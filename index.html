@@ -346,3 +346,35 @@
       transform: translateY(30px) scale(0.95);
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+    .letter-modal-backdrop.open .letter-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffe3ee;
+      border: none;
+      color: #d6336c;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .letter-header {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      font-weight: 700;
+      color: #e03168;
+      margin-bottom: 8px;
+      padding-right: 25px;
+      line-height: 1.2;
+    }
