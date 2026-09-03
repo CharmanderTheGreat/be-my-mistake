@@ -91,6 +91,7 @@
       justify-content: center;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      transition: all 0.2s ease;
     }
 
     .icon-btn:active {
@@ -473,3 +474,477 @@
   </style>
 </head>
 <body>
+
+  <div class="app-container" id="container">
+    <!-- Falling petals effect canvas -->
+    <canvas id="petals"></canvas>
+
+    <!-- Top Bar Navigation -->
+    <div class="top-bar">
+      <div class="icon-btn" id="home-btn" title="Refresh">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9c7178" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </div>
+
+      <div class="badge-pill">A Special Bouquet</div>
+
+      <div class="icon-btn" id="music-btn" title="Toggle Music">
+        <svg id="music-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff477e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Center Stage: Bouquet -->
+    <div class="stage-content">
+      <div class="bouquet-display" id="bouquet-wrapper">
+        <!-- SVG Vector Bouquet Illustration -->
+        <svg class="bouquet-svg-container" viewBox="0 0 340 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Wrapper Background Outer Paper -->
+          <path id="wrapper-back" d="M90 220 L170 395 L250 220 C285 170, 245 130, 170 130 C95 130, 55 170, 90 220 Z" fill="#ffc2d4" />
+
+          <!-- Leaves and Foliage Behind -->
+          <g>
+            <path d="M110 170 Q70 140 85 105 Q120 120 125 155 Z" fill="#99c99b"/>
+            <path d="M230 170 Q270 140 255 105 Q220 120 215 155 Z" fill="#88bb8a"/>
+            <path d="M170 140 Q170 85 155 75 Q145 105 160 135 Z" fill="#99c99b"/>
+            <path d="M185 140 Q200 85 215 80 Q205 110 180 135 Z" fill="#88bb8a"/>
+          </g>
+
+          <!-- Flowers Cluster -->
+          <!-- Flower 1 (Pink Rose Left) -->
+          <g transform="translate(105, 145)">
+            <circle cx="0" cy="0" r="28" fill="#ff8da1"/>
+            <circle cx="-3" cy="-3" r="20" fill="#ff6b8b"/>
+            <circle cx="2" cy="2" r="12" fill="#ff4d73"/>
+            <path d="M-6 -2 C-2 -10, 8 -8, 6 2 C2 6, -4 4, -6 -2" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- Flower 2 (Red Rose Center) -->
+          <g transform="translate(170, 115)">
+            <circle cx="0" cy="0" r="34" fill="#ff4d6d"/>
+            <circle cx="-3" cy="-4" r="25" fill="#e62e5c"/>
+            <circle cx="3" cy="2" r="16" fill="#c9184a"/>
+            <path d="M-8 -3 C-3 -12, 10 -10, 8 4 C3 9, -5 7, -8 -3" stroke="#ffccd5" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- Flower 3 (Pastel Rose Right) -->
+          <g transform="translate(235, 145)">
+            <circle cx="0" cy="0" r="28" fill="#ff99aa"/>
+            <circle cx="-2" cy="-3" r="20" fill="#ff758f"/>
+            <circle cx="2" cy="2" r="12" fill="#ff5376"/>
+            <path d="M-5 -2 C-2 -8, 7 -7, 5 2 C2 5, -3 4, -5 -2" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- Flower 4 (Tulip / Daisy Top Center) -->
+          <g transform="translate(170, 75)">
+            <ellipse cx="0" cy="0" rx="14" ry="18" fill="#ffb703"/>
+            <circle cx="0" cy="0" r="8" fill="#fb8500"/>
+            <ellipse cx="-12" cy="2" rx="7" ry="14" fill="#ffea00" transform="rotate(-25)"/>
+            <ellipse cx="12" cy="2" rx="7" ry="14" fill="#ffea00" transform="rotate(25)"/>
+          </g>
+
+          <!-- Flower 5 (Baby Breath / White Lilies accent) -->
+          <g transform="translate(135, 95)">
+            <circle cx="0" cy="0" r="10" fill="#fff"/>
+            <circle cx="0" cy="0" r="4" fill="#ffd166"/>
+          </g>
+          <g transform="translate(205, 95)">
+            <circle cx="0" cy="0" r="10" fill="#fff"/>
+            <circle cx="0" cy="0" r="4" fill="#ffd166"/>
+          </g>
+          <g transform="translate(170, 168)">
+            <circle cx="0" cy="0" r="13" fill="#ffffff"/>
+            <circle cx="0" cy="0" r="6" fill="#ffb703"/>
+          </g>
+
+          <!-- Front Wrap Layer / Origami Wrap -->
+          <path id="wrapper-front-left" d="M85 200 L170 405 L150 240 Z" fill="#ffa8c0" />
+          <path id="wrapper-front-right" d="M255 200 L170 405 L190 240 Z" fill="#ff91ad" />
+          <path id="wrapper-front-center" d="M120 220 Q170 250 220 220 L170 405 Z" fill="#ffb3c6" />
+
+          <!-- Cute Ribbon and Bow -->
+          <g id="ribbon-bow" transform="translate(170, 310)">
+            <!-- Left loop -->
+            <path d="M0 0 C-25 -25, -45 -10, -35 15 C-25 30, -5 8, 0 0" fill="#e03168" />
+            <!-- Right loop -->
+            <path d="M0 0 C25 -25, 45 -10, 35 15 C25 30, 5 8, 0 0" fill="#e03168" />
+            <!-- Ribbon Tails -->
+            <path d="M-8 6 C-18 28, -25 45, -30 55 C-24 53, -15 50, -12 40 L0 10 Z" fill="#c9184a"/>
+            <path d="M8 6 C18 28, 25 45, 30 55 C24 53, 15 50, 12 40 L0 10 Z" fill="#c9184a"/>
+            <!-- Center knot -->
+            <circle cx="0" cy="3" r="8" fill="#ff4d73"/>
+            <circle cx="-1" cy="2" r="3" fill="#fff" opacity="0.6"/>
+          </g>
+
+          <!-- Cute Envelope Tag -->
+          <g transform="translate(200, 230) rotate(12)">
+            <rect x="0" y="0" width="46" height="32" rx="4" fill="#ffffff" stroke="#ffb3c6" stroke-width="1.5"/>
+            <path d="M2 3 L23 18 L44 3" stroke="#ff80a0" stroke-width="1.5" fill="none"/>
+            <circle cx="23" cy="18" r="4" fill="#ff477e"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Letter Floating Action Button -->
+    <button class="letter-fab" id="open-letter-btn" aria-label="Open Letter">
+      <div class="unread-badge">1</div>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Bottom Interactive Wrapper Selector -->
+    <div class="bottom-bar">
+      <div class="wrapper-palette-title">Choose Bouquet Wrapping Style</div>
+      <div class="wrapper-choices">
+        <!-- Pink Classic -->
+        <div class="choice-item active" onclick="changeTheme('pink', this)" title="Sweet Pink">
+          <svg viewBox="0 0 40 40" width="100%" height="100%">
+            <polygon points="10,8 30,8 24,34 16,34" fill="#ffb3c6"/>
+            <circle cx="20" cy="22" r="4" fill="#e03168"/>
+          </svg>
+        </div>
+        <!-- Kraft Brown -->
+        <div class="choice-item" onclick="changeTheme('kraft', this)" title="Vintage Kraft Brown">
+          <svg viewBox="0 0 40 40" width="100%" height="100%">
+            <polygon points="10,8 30,8 24,34 16,34" fill="#d4a373"/>
+            <circle cx="20" cy="22" r="4" fill="#8d5b4c"/>
+          </svg>
+        </div>
+        <!-- Pastel Lavender -->
+        <div class="choice-item" onclick="changeTheme('purple', this)" title="Dreamy Lavender">
+          <svg viewBox="0 0 40 40" width="100%" height="100%">
+            <polygon points="10,8 30,8 24,34 16,34" fill="#d8b4e2"/>
+            <circle cx="20" cy="22" r="4" fill="#9b5de5"/>
+          </svg>
+        </div>
+        <!-- Soft Cream Checkered -->
+        <div class="choice-item" onclick="changeTheme('cream', this)" title="Cream & Gold">
+          <svg viewBox="0 0 40 40" width="100%" height="100%">
+            <polygon points="10,8 30,8 24,34 16,34" fill="#faedcd"/>
+            <circle cx="20" cy="22" r="4" fill="#e07a5f"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 1: Tap to Unwrap Overlay -->
+    <div id="unwrap-screen">
+      <div class="gift-icon-wrapper">
+        <div class="gift-glow"></div>
+        <svg class="gift-svg" viewBox="0 0 100 100" fill="none">
+          <!-- Mini bouquet preview -->
+          <path d="M30 45 L50 85 L70 45 Z" fill="#ffb3c6" />
+          <circle cx="42" cy="40" r="12" fill="#ff5d8f" />
+          <circle cx="58" cy="40" r="12" fill="#ff758f" />
+          <circle cx="50" cy="30" r="14" fill="#ff477e" />
+          <circle cx="50" cy="22" r="5" fill="#ffea00" />
+          <!-- Mini envelope -->
+          <rect x="52" y="52" width="22" height="16" rx="2" fill="#ffffff" stroke="#ffb3c6" stroke-width="1"/>
+          <path d="M53 53 L63 60 L73 53" stroke="#ff477e" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <h1 class="gift-heading">A gift has arrived for you</h1>
+      <p class="gift-subtext">TAP ANYWHERE TO UNWRAP</p>
+      <div class="tap-indicator">
+        <div class="tap-dot"></div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Pop-up Confession Letter Modal -->
+    <div class="letter-modal-backdrop" id="letter-modal">
+      <div class="letter-card">
+        <button class="close-btn" id="close-letter-btn" aria-label="Close letter">&times;</button>
+        
+        <!-- Editable To / Greeting -->
+        <div class="letter-header">Dearest [Her Name / Cutie], 💕</div>
+        
+        <!-- DYNAMIC SCROLLABLE BODY (Kahit gaano kahaba, auto-scroll at dynamic!) -->
+        <div class="letter-scroll-body" id="letter-text">
+Hi! I just wanted to make this special little gift for you. 🌸
+
+Medyo matagal ko na ring gustong sabihin sa'yo 'to, but I didn't know how to properly say it in person. Every time I see you or talk to you, you always bring a smile to my face and brighten up my ordinary days.
+
+I really admire your kindness, your energy, and everything about you. Sana nagustuhan mo 'tong simpleng digital bouquet na 'to na ginawa ko specifically for you.
+
+No pressure at all, I just wanted to be honest about my feelings and let you know how special you are to me. ✨
+        </div>
+
+        <!-- Editable From / Sign-off -->
+        <div class="letter-footer">
+          From, [Your Name] 🌷
+        </div>
+        <div class="letter-sub-credit">Made with love • tap outside to close</div>
+      </div>
+    </div>
+
+    <!-- Audio Player (bg.mp3) -->
+    <audio id="bg-audio" loop preload="auto">
+      <!-- Ilagay ang bg.mp3 sa same folder kung saan nakalagay ang index.html -->
+      <source src="bg.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    // State management
+    let unwrapped = false;
+    let audioPlaying = false;
+
+    const unwrapScreen = document.getElementById('unwrap-screen');
+    const bouquetWrapper = document.getElementById('bouquet-wrapper');
+    const letterModal = document.getElementById('letter-modal');
+    const openLetterBtn = document.getElementById('open-letter-btn');
+    const closeLetterBtn = document.getElementById('close-letter-btn');
+    const homeBtn = document.getElementById('home-btn');
+    const musicBtn = document.getElementById('music-btn');
+    const bgAudio = document.getElementById('bg-audio');
+
+    // UNWRAP ACTION
+    unwrapScreen.addEventListener('click', () => {
+      if (unwrapped) return;
+      unwrapped = true;
+
+      // Start music
+      playMusic();
+
+      // Spawn celebration hearts/confetti
+      burstConfetti();
+
+      // Hide unwrap screen
+      unwrapScreen.classList.add('hidden');
+
+      // Animate bouquet bloom
+      bouquetWrapper.classList.add('bloom');
+
+      // Automatically open confession letter after short sweet delay (1.2s)
+      setTimeout(() => {
+        openModal();
+      }, 1200);
+    });
+
+    // OPEN & CLOSE LETTER MODAL
+    function openModal() {
+      letterModal.classList.add('open');
+      burstPetalsFromLetter();
+    }
+
+    function closeModal() {
+      letterModal.classList.remove('open');
+    }
+
+    openLetterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal();
+    });
+
+    closeLetterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+
+    // Close when tapping modal backdrop
+    letterModal.addEventListener('click', (e) => {
+      if (e.target === letterModal) {
+        closeModal();
+      }
+    });
+
+    // RESET TO COVER
+    homeBtn.addEventListener('click', () => {
+      unwrapScreen.classList.remove('hidden');
+      bouquetWrapper.classList.remove('bloom');
+      unwrapped = false;
+      closeModal();
+    });
+
+    // MUSIC TOGGLE
+    function playMusic() {
+      bgAudio.play().then(() => {
+        audioPlaying = true;
+        updateMusicIcon(true);
+      }).catch(err => {
+        console.log("Audio play blocked or bg.mp3 not found yet:", err);
+      });
+    }
+
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audioPlaying) {
+        bgAudio.pause();
+        audioPlaying = false;
+        updateMusicIcon(false);
+      } else {
+        bgAudio.play().then(() => {
+          audioPlaying = true;
+          updateMusicIcon(true);
+        }).catch(e => console.log(e));
+      }
+    });
+
+    function updateMusicIcon(isPlaying) {
+      if (isPlaying) {
+        musicBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff477e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>`;
+      } else {
+        musicBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9c7178" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4h5v4"></path>
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          </svg>`;
+      }
+    }
+
+    // THEME / WRAPPER SWITCHER
+    const themes = {
+      pink: {
+        back: '#ffc2d4',
+        left: '#ffa8c0',
+        right: '#ff91ad',
+        center: '#ffb3c6',
+        ribbon: '#e03168',
+        knot: '#ff4d73'
+      },
+      kraft: {
+        back: '#d4a373',
+        left: '#c68b59',
+        right: '#b07d4b',
+        center: '#dfb288',
+        ribbon: '#8d5b4c',
+        knot: '#6f4538'
+      },
+      purple: {
+        back: '#e2cfea',
+        left: '#d3b7e0',
+        right: '#be9bd4',
+        center: '#dfc2ed',
+        ribbon: '#9b5de5',
+        knot: '#7b2cbf'
+      },
+      cream: {
+        back: '#faedcd',
+        left: '#f0dfb6',
+        right: '#e6cca0',
+        center: '#fdf0d5',
+        ribbon: '#e07a5f',
+        knot: '#d06043'
+      }
+    };
+
+    function changeTheme(themeName, element) {
+      document.querySelectorAll('.choice-item').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+
+      const palette = themes[themeName];
+      document.getElementById('wrapper-back').setAttribute('fill', palette.back);
+      document.getElementById('wrapper-front-left').setAttribute('fill', palette.left);
+      document.getElementById('wrapper-front-right').setAttribute('fill', palette.right);
+      document.getElementById('wrapper-front-center').setAttribute('fill', palette.center);
+      
+      const bow = document.getElementById('ribbon-bow');
+      bow.querySelectorAll('path').forEach(p => p.setAttribute('fill', palette.ribbon));
+      bow.querySelector('circle').setAttribute('fill', palette.knot);
+
+      createFloatingHeart(event.clientX || window.innerWidth/2, event.clientY || window.innerHeight/2);
+    }
+
+    // TAP TO EMIT FLOATING HEARTS
+    document.addEventListener('pointerdown', (e) => {
+      // Don't trigger on buttons
+      if (e.target.closest('.icon-btn, .choice-item, .letter-card, .letter-fab')) return;
+      createFloatingHeart(e.clientX, e.clientY);
+    });
+
+    function createFloatingHeart(x, y) {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      const emojis = ['💖', '🌸', '✨', '🌷', '💕', '🎀'];
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = `${x - 12}px`;
+      heart.style.top = `${y - 12}px`;
+      heart.style.fontSize = `${Math.floor(Math.random() * 12) + 18}px`;
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 1200);
+    }
+
+    function burstConfetti() {
+      for (let i = 0; i < 24; i++) {
+        setTimeout(() => {
+          const rx = window.innerWidth / 2 + (Math.random() * 200 - 100);
+          const ry = window.innerHeight / 2 + (Math.random() * 200 - 100);
+          createFloatingHeart(rx, ry);
+        }, i * 40);
+      }
+    }
+
+    function burstPetalsFromLetter() {
+      const rect = openLetterBtn.getBoundingClientRect();
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          createFloatingHeart(rect.x + 20, rect.y + 20);
+        }, i * 50);
+      }
+    }
+
+    // FALLING SAKURA / PETALS EFFECT (CANVAS)
+    const canvas = document.getElementById('petals');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = canvas.parentElement.clientWidth;
+    let height = canvas.height = canvas.parentElement.clientHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    });
+
+    const petals = Array.from({ length: 18 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 1.5 + 0.5,
+      angle: Math.random() * 360,
+      angularSpeed: (Math.random() - 0.5) * 1.5,
+      color: ['#ffccd5', '#ffb3c6', '#ffc2d4', '#ffe5ec'][Math.floor(Math.random() * 4)]
+    }));
+
+    function drawPetals() {
+      ctx.clearRect(0, 0, width, height);
+
+      petals.forEach(p => {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.angle * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        // petal oval shape
+        ctx.ellipse(0, 0, p.r, p.r * 1.6, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        p.y += p.d;
+        p.x += Math.sin(p.angle * 0.05) * 0.6;
+        p.angle += p.angularSpeed;
+
+        if (p.y > height + 20) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+      });
+
+      requestAnimationFrame(drawPetals);
+    }
+    drawPetals();
+  </script>
+</body>
+</html>
