@@ -378,3 +378,38 @@
       padding-right: 25px;
       line-height: 1.2;
     }
+
+    /* DYNAMIC SCROLLABLE BODY */
+    .letter-scroll-body {
+      overflow-y: auto;
+      padding-right: 6px;
+      margin: 10px 0 14px;
+      color: #4a363d;
+      font-size: 15px;
+      line-height: 1.65;
+      word-break: break-word;
+      white-space: pre-line;
+      flex: 1;
+      max-height: 52vh;
+      font-weight: 500;
+    }
+
+    .letter-scroll-body::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .letter-scroll-body::-webkit-scrollbar-thumb {
+      background: #ffb8cd;
+      border-radius: 10px;
+    }
+
+    .letter-footer {
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      font-weight: 700;
+      color: #e03168;
+      text-align: right;
+      padding-top: 4px;
+      border-top: 1px dashed #ffd1e0;
+      margin-top: auto;
+    }
