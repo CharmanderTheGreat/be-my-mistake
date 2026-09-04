@@ -305,6 +305,140 @@
       border: 2px solid #fff;
     }
 
+    /* Passcode Lock Modal */
+    .lock-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(45, 10, 25, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lock-modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lock-card {
+      width: 100%;
+      max-width: 320px;
+      background: #fff8fa;
+      border-radius: 28px;
+      padding: 26px 22px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2.5px solid #ffe1ec;
+      transform: scale(0.92);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .lock-modal-backdrop.open .lock-card {
+      transform: scale(1);
+    }
+
+    .lock-icon-circle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #ffe3ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .lock-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #e03168;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .lock-desc {
+      font-size: 13px;
+      color: #8b6b74;
+      text-align: center;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+
+    .passcode-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 2px solid #ffccd8;
+      background: #fff;
+      font-size: 16px;
+      color: #4a363d;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      margin-bottom: 10px;
+    }
+
+    .passcode-input:focus {
+      border-color: #ff477e;
+      box-shadow: 0 0 0 3px rgba(255, 71, 126, 0.2);
+    }
+
+    .passcode-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(135deg, #ff477e, #ff6b8b);
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(255, 71, 126, 0.35);
+      transition: transform 0.15s ease;
+    }
+
+    .passcode-btn:active {
+      transform: scale(0.96);
+    }
+
+    .error-msg {
+      font-size: 12px;
+      font-weight: 700;
+      color: #e63946;
+      margin-top: 8px;
+      min-height: 18px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .error-msg.visible {
+      opacity: 1;
+    }
+
+    .shake {
+      animation: shake-anim 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes shake-anim {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
     /* Confession Letter Modal */
     .letter-modal-backdrop {
       position: absolute;
@@ -375,7 +509,6 @@
       line-height: 1.2;
     }
 
-    /* DYNAMIC LONG-TEXT SCROLL CONTAINER */
     .letter-scroll-body {
       overflow-y: auto;
       padding-right: 8px;
@@ -702,6 +835,24 @@
       </div>
     </div>
 
+    <!-- Screen 2.5: Cute Passcode Lock Modal -->
+    <div class="lock-modal-backdrop" id="lock-modal">
+      <div class="lock-card" id="lock-card">
+        <div class="lock-icon-circle">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff477e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="lock-title">May liham para sa'yo 💌</div>
+        <div class="lock-desc">Enter the secret passcode to unlock:</div>
+        
+        <input type="text" class="passcode-input" id="passcode-input" placeholder="Enter password..." autocomplete="off" autocorrect="off" autocapitalize="off" />
+        <button class="passcode-btn" id="unlock-btn">Buksan ang Liham ✨</button>
+        <div class="error-msg" id="error-msg">Maling passcode, subukan ulit! 🌸</div>
+      </div>
+    </div>
+
     <!-- Screen 3: Letter Modal -->
     <div class="letter-modal-backdrop" id="letter-modal">
       <div class="letter-card">
@@ -722,12 +873,20 @@
   </div>
 
   <script>
-  
+    // ================= ENCRYPTED DATA =================
     const _0xrec = "VG8gbXkgZGVhcmVzdCBJeWFoLA==";
     const _0xmsg = "SGksIEkgZG9uJ3Qga25vdyBwYWFubyBrbyBzYXNhYmloaW4gbGFoYXQgc2EneW8uIFRoZXJlJ3Mgbm8gZGF5IHdpdGhvdXQgaGF2aW5nIGEgdGhvdWdodCBvZiB5b3UuIFdoYXQgSSByZWFsbHkgbGlrZSBhYm91dCB5b3UgaXMgeXVuZyBwYWdpZ2luZyB0YWhpbWlrIG1vLCBhbHRob3VnaCBJIGtub3cgZGVlcCBpbnNpZGUsIG1haW5nYXkga2Egc2EgbWdhIHRhb25nIGNvbWZvcnRhYmxlIGthLiBZb3VyIHNtaWxlIGlzIHNvIGN1dGUuCgpOYWFsYWxhIGtvIHJpbiB5dW5nIHVtYXR0ZW5kIGthIHNhIGNpdHkgaGFsbCBrYXNpIG1heSBwYS13b3JzaGlwIHNvbmcgc2lsYSBkb29uLCBhbmQgdW1hdHRlbmQgZGluIGFrbyBub29uIG5hbmcgbWFnLWlzYSBuZ2EgbGFuZy4gTmFraXRhIGtvIGtheW8gbmEgdW1hdHRlbmQuIElzYSAneW9uIHNhIG1nYSB1bmFuZyB1c2FwIG5hdGluLiBOYWxhbWFuIGtvIG5nIGFyYXcgbmEgJ3lvbiBuYSBpa2F3IHRhbGFnYSBhbmcgbmFnLWF5YSBzYSBrYWliaWdhbiBtbyBuYSB1bWF0dGVuZCBkaW4gc2Egd29yc2hpcCBjb25jZXJ0IGthc2kgeW91IHdhbnRlZCB0byBnbywga2FzbyB3YWxhIGthbmcga2FzYW1hLgoKTWF0YWdhbCBrbyBuYSBndXN0b25nIHNhYmloaW4gJ3RvIHNhJ3lvIHNpbmNlIGRlZmVuc2UgbmF0aW4gc2EgRmlsaXBpbm9sb2hpeWEuIEkgd2FudCB0byBjb25mZXNzLCBub3QgaW4gYSB3cm9uZyB3YXkgb3Igd2l0aCBiYWQgaW50ZW50aW9uLiBJIHdhbnQgdG8ga25vdyB5b3UgbW9yZS4gVGhlcmUncyBubyBoYXJkIGZlZWxpbmdzIGlmIHlvdSBjYW4ndCByZWNpcHJvY2F0ZSBteSBmZWVsaW5ncywgaWYgZXZlciBtYW4gbmEgbmFiYWJhc2EgbW8gJ3RvIHNhIG1vbWVudCBuYSAndG8uIEl0IG1lYW5zIGxhbmcgbmEgSSBnb3QgdGhlIGNvdXJhZ2UgbmEsIHNvIGp1c3QgdGVsbCBtZSBob3cgeW91IGZlZWwuIFRlbGwgbWUgd2hhdCB5b3Ugd2FudC4gTm8gcHJlc3N1cmUsIGFuZCBzeWVtcHJlLCBkaSBrYSBkYXBhdCBtYS1ndWlsdCBvciBtYWtvbnNlbnN5YS4gQXMgSSBzYWlkLCBqdXN0IGJlIHlvdS4gVGVsbCBtZSBob3cgeW91IGZlZWwgdG93YXJkcyBtZS4KCkkgd2lsbCBsb3ZlIHRvIGtub3cgeW91IGJldHRlciwganVzdCBsaWtlIGhvdyBJIGxlYXJuZWQgdG8gc29sdmUgYSBSdWJpaydzIEN1YmXigJRiZWNhdXNlIEknbSB3aWxsaW5nIHRvIGxlYXJuIHlvdSBwaWVjZSBieSBwaWVjZS4KCkFsYW0gbW8gYmEgbmEgaGlyYXAgYWtvIHVtYW1pbj8gSWYgZXZlciBtYW4gbmEgcGluYWJhc2Ega28gJ3RvIHNhJ3lvLCBpa2F3IGFuZyBrYXVuYS11bmFoYW5nIHRhbyBuYSBuYXNhYmloYW4ga28gbmcgdHVuYXkga29uZyBuYXJhcmFtZGFtYW4uIERhaGlsIEkgYWx3YXlzIHRoaW5rLCBJIGNhbid0IGFmZm9yZCB0byBsb3ZlIHBhIGRhaGlsIEknbSBmaW5hbmNpYWxseSB1bnN0YWJsZSBwYSwgYSBzdHVkZW50LCBhbmQgZG9lc24ndCBoYXZlIGEgd29yayBwYS4gTGlrZSwgaG93IGRhcmUgSSBjcmF2ZSBmb3IgbG92ZSB3aGVuIEkgaGF2ZSBub3RoaW5nIHRvIG9mZmVyIHBhPyBQZXJvIEkgdGhvdWdodCBJIGhhdmUgc28gbWFueSB0aGluZ3MgdG8gb2ZmZXIgcGEgbmFtYW46IHRpbWUsIGVmZm9ydCB0byBrbm93IHlvdSBiZXR0ZXIsIHJlc3BlY3QsIGNvbnNpc3RlbmN5LCBiZWluZyBmbHVlbnQgaW4gbGlzdGVuaW5nLCBhbHNvIGJlaW5nIHRoZXJlLiBUaG9zZSB0aGluZ3MgbWF0dGVyIHRvby4KCkkgbWF5IGJlIHBvb3IgYXQgdGhpcyBtb21lbnQsIGJ1dCBJIGhhdmUgYW1iaXRpb24sIGRyZWFtcywgYW5kIGdvYWxzLiBLYXlhIHdhZyBrYSBtYWctYWxhbGEgbmEgYmFrYSBtYXNha3RhbiBtbyAna28uIEJhc3RhIG1hZ2luZyB0b3RvbyBrYSBsYW5nLiBBbmQgaWYgZXZlciBtYW4gbmEgbWF5IG1hZ3VzdHVoYW4ga2FuZyBpYmEsIHBsZWFzZSBkbyBub3QgZGF0ZSBhIG1hbiBzbyBwb29yIHRoYXQgdGhlIG9ubHkgdGhpbmcgaGUgY2FuIG9mZmVyIGlzIGhpcyBtb25leS4KClRoaXJkIHllYXIgbmEgdGF5bywgYW5kIEkgZ290IG15IGV5ZXMgb24geW91IHNpbmNlIGZpcnN0IHllYXIgYXQgbWFnYmFiYWthc3lvbiBuYSBub29uLiBBbmQgd2Ugb25seSBsaXZlIG9uY2UsIHNvIGhlcmUncyBteSBjaGFuY2UgbmEuIElzYW5nIGJlc2VzIGxhbmcgbmFtYW4gdGF5byBtYWJ1YnVoYXksIGRpYmE/CgpObyBtYXR0ZXIgd2hhdCBoYXBwZW5zLCBJJ20gc28gZ3JhdGVmdWwgbmEgbmFnaW5nIGtha2xhc2Uga2l0YS4gTWFoaXlhaW4gYWtvLCBvbywgcGVybyBJIGRvbid0IGtub3cgaG93IHRvIHByb3Blcmx5IHNheSBpdCB0byB5b3UgaW4gcGVyc29uLiBFdmVyeSB0aW1lIEkgc2VlIHlvdSBvciB0YWxrIHRvIHlvdSwgeW91IGFsd2F5cyBicmluZyBhIHNtaWxlIHRvIG15IGZhY2UuIEthaGl0IG51bmcgbmFnLUNFQVAgdGF5bywgbmF1dW5hIGFrbyBtYWdsYWthZCBrYXNpIGRpIGtvIG1hcGlnaWxhbiBuZ2l0aSBrbyBrYXNpIGthc2FtYSBraXRhLiBOYXVuYSB0YWxhZ2EgYWtvIGJha2EgbWFraXRhIG1vLiBOYWtha2FoaXlhIG5hbWFuIPCfmKkuCgpJIHJlYWxseSBhZG1pcmUgeW91ciBraW5kbmVzcywgeW91ciBlbmVyZ3ksIGFuZCBldmVyeXRoaW5nIGFib3V0IHlvdS4gSSBob3BlIHlvdSBsaWtlZCB0aGlzIGxldHRlciBhbmQgdGhlIGZsb3dlcnMuCgpMYXN0bHksIG5vIHByZXNzdXJlIGF0IGFsbC4gSSBqdXN0IHdhbnRlZCB0byBiZSBob25lc3QgYWJvdXQgbXkgZmVlbGluZ3MgYW5kIGxldCB5b3Uga25vdyBob3cgdHJ1bHkgc3BlY2lhbCB5b3UgYXJlIHRvIG1lIOKcqC4=";
     const _0xsnd = "RnJvbSwgc29tZW9uZSB3aG8gYWRtaXJlcyB5b3Ug8J+Mtw==";
 
-    // Safe UTF-8 Base64 Decoder
+    // Hashed passcode for "hi" (SHA-256 for maximum security)
+    const SECRET_HASH = "8f434346648f6b96df89dda901c5176b10e6d0b93b4f21d382d397b9f23fa60f";
+
+    async function hashString(str) {
+      const buffer = new TextEncoder().encode(str.trim().toLowerCase());
+      const hashBuf = await crypto.subtle.digest('SHA-256', buffer);
+      return Array.from(new Uint8Array(hashBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
     function decodeSafe(str) {
       try {
         const bytes = Uint8Array.from(atob(str), c => c.charCodeAt(0));
@@ -737,17 +896,18 @@
       }
     }
 
-    // Auto-decode and inject on browser runtime
-    document.getElementById('letter-recipient').innerText = decodeSafe(_0xrec);
-    document.getElementById('letter-text').innerText = decodeSafe(_0xmsg);
-    document.getElementById('letter-sender').innerText = decodeSafe(_0xsnd);
-
     // State management
     let unwrapped = false;
+    let isUnlocked = false;
     let audioPlaying = false;
 
     const unwrapScreen = document.getElementById('unwrap-screen');
     const bouquetWrapper = document.getElementById('bouquet-wrapper');
+    const lockModal = document.getElementById('lock-modal');
+    const lockCard = document.getElementById('lock-card');
+    const passInput = document.getElementById('passcode-input');
+    const unlockBtn = document.getElementById('unlock-btn');
+    const errorMsg = document.getElementById('error-msg');
     const letterModal = document.getElementById('letter-modal');
     const openLetterBtn = document.getElementById('open-letter-btn');
     const closeLetterBtn = document.getElementById('close-letter-btn');
@@ -755,6 +915,7 @@
     const musicBtn = document.getElementById('music-btn');
     const bgAudio = document.getElementById('bg-audio');
 
+    // UNWRAP ACTION
     unwrapScreen.addEventListener('click', () => {
       if (unwrapped) return;
       unwrapped = true;
@@ -765,8 +926,59 @@
       bouquetWrapper.classList.add('bloom');
 
       setTimeout(() => {
-        openModal();
+        handleLetterRequest();
       }, 1200);
+    });
+
+    // PASSCODE LOGIC
+    function handleLetterRequest() {
+      if (isUnlocked) {
+        openModal();
+      } else {
+        openLockModal();
+      }
+    }
+
+    function openLockModal() {
+      lockModal.classList.add('open');
+      passInput.value = '';
+      errorMsg.classList.remove('visible');
+      setTimeout(() => passInput.focus(), 300);
+    }
+
+    function closeLockModal() {
+      lockModal.classList.remove('open');
+    }
+
+    async function verifyPasscode() {
+      const inputVal = passInput.value;
+      const hashed = await hashString(inputVal);
+
+      if (hashed === SECRET_HASH) {
+        isUnlocked = true;
+        // Decrypt text only upon successful passcode match
+        document.getElementById('letter-recipient').innerText = decodeSafe(_0xrec);
+        document.getElementById('letter-text').innerText = decodeSafe(_0xmsg);
+        document.getElementById('letter-sender').innerText = decodeSafe(_0xsnd);
+
+        closeLockModal();
+        setTimeout(() => {
+          openModal();
+        }, 200);
+      } else {
+        errorMsg.classList.add('visible');
+        lockCard.classList.add('shake');
+        setTimeout(() => lockCard.classList.remove('shake'), 450);
+      }
+    }
+
+    unlockBtn.addEventListener('click', verifyPasscode);
+    passInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') verifyPasscode();
+    });
+
+    lockModal.addEventListener('click', (e) => {
+      if (e.target === lockModal) closeLockModal();
     });
 
     function openModal() {
@@ -780,7 +992,7 @@
 
     openLetterBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      openModal();
+      handleLetterRequest();
     });
 
     closeLetterBtn.addEventListener('click', (e) => {
@@ -797,6 +1009,7 @@
       bouquetWrapper.classList.remove('bloom');
       unwrapped = false;
       closeModal();
+      closeLockModal();
     });
 
     function playMusic() {
@@ -864,7 +1077,7 @@
     }
 
     document.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('.icon-btn, .choice-item, .letter-card, .letter-fab')) return;
+      if (e.target.closest('.icon-btn, .choice-item, .letter-card, .letter-fab, .lock-card')) return;
       createFloatingHeart(e.clientX, e.clientY);
     });
 
