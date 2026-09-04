@@ -3,12 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <script>
-    // Cross-browser na tumpak na viewport height. Ang CSS 'vh' unit ay
-    // hindi consistent sa mga mobile browsers (lalo na Safari sa iOS na
-    // may gumagalaw na address bar/toolbar) - kaya kino-compute natin
-    // dito ang totoong innerHeight at ini-expose bilang CSS variable.
-    // Nagsisilbi rin itong fallback para sa mga browser na wala pang
-    // suporta sa mas bagong 'dvh' unit.
     (function () {
       function setViewportHeight() {
         const vh = window.innerHeight * 0.01;
@@ -48,9 +42,6 @@
     body {
       font-family: 'Nunito', sans-serif;
       background: var(--bg-gradient);
-      /* --vh: si-seset ng JS base sa totoong window.innerHeight, para
-         consistent ang height kahit anong browser (Safari iOS na may
-         gumagalaw na address bar, Chrome Android, Firefox, atbp.) */
       height: calc(var(--vh, 1vh) * 100);
       display: flex;
       justify-content: center;
@@ -64,10 +55,6 @@
     }
 
     .app-container {
-      /* Buong browser window na mismo ang gagamitin - walang "phone card"
-         na look. Ang max-width ay para lamang panatilihin ang proporsyon
-         ng content sa napakalaking desktop screens, hindi para gumawa ng
-         bisibleng frame. */
       width: 100%;
       max-width: 560px;
       height: calc(var(--vh, 1vh) * 100);
@@ -84,16 +71,10 @@
       .app-container { height: 100dvh; }
     }
 
-    /* Sa mas malawak na screens (tablet/desktop), palawakin nang bahagya
-       ang content nang hindi nagmumukhang naka-frame - flexible lang na
-       lumalaki ang bouquet at spacing, hindi nagiging fixed-width card. */
     @media (min-width: 900px) {
       .app-container { max-width: 640px; }
     }
 
-    /* Sa napakaliit na screens (maiikling height, hal. landscape phone),
-       automatic na mag-a-adjust ang laki ng bouquet at spacing sa halip
-       na mag-overflow o kailanganin ng scroll. */
     @media (max-height: 640px) {
       .top-bar { padding: 8px 16px 4px !important; }
       .gift-icon-wrapper { width: 90px !important; height: 90px !important; margin-bottom: 10px !important; }
@@ -889,12 +870,12 @@
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </div>
-        <div class="lock-title">May liham para sa'yo 💌</div>
+        <div class="lock-title">Special Letter💌</div>
         <div class="lock-desc">Enter the secret passcode to unlock:</div>
         
         <input type="text" class="passcode-input" id="passcode-input" placeholder="Enter password..." autocomplete="off" autocorrect="off" autocapitalize="off" />
-        <button class="passcode-btn" id="unlock-btn">Buksan ang Liham ✨</button>
-        <div class="error-msg" id="error-msg">Maling passcode, subukan ulit! 🌸</div>
+        <button class="passcode-btn" id="unlock-btn">Open the Letter ✨</button>
+        <div class="error-msg" id="error-msg">Wrong passcode, try again! 🌸</div>
       </div>
     </div>
 
