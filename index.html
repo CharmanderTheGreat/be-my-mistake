@@ -14,8 +14,7 @@
       --primary-pink: #ff6584;
       --deep-pink: #e0446b;
       --soft-pink: #fff0f5;
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --shadow-color: rgba(230, 100, 135, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.94);
     }
 
     * {
@@ -37,7 +36,6 @@
       color: #555;
     }
 
-    /* Mobile container frame */
     .app-container {
       width: 100%;
       max-width: 430px;
@@ -60,7 +58,6 @@
       }
     }
 
-    /* Floating petals canvas */
     canvas#petals {
       position: absolute;
       top: 0;
@@ -71,12 +68,11 @@
       z-index: 2;
     }
 
-    /* Top Bar */
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 22px 10px;
+      padding: 16px 20px 8px;
       z-index: 10;
     }
 
@@ -131,9 +127,9 @@
 
     .gift-icon-wrapper {
       position: relative;
-      width: 140px;
-      height: 140px;
-      margin-bottom: 24px;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 20px;
       animation: gentle-float 3s ease-in-out infinite;
     }
 
@@ -158,8 +154,7 @@
       font-weight: 800;
       color: #ff477e;
       text-align: center;
-      margin-bottom: 12px;
-      letter-spacing: -0.3px;
+      margin-bottom: 10px;
     }
 
     .gift-subtext {
@@ -172,7 +167,7 @@
     }
 
     .tap-indicator {
-      margin-top: 26px;
+      margin-top: 24px;
       width: 28px;
       height: 44px;
       border: 2px solid #ff9ebb;
@@ -191,7 +186,7 @@
       animation: scroll-hint 1.8s infinite ease-in-out;
     }
 
-    /* Screen 2: Bouquet Showcase */
+    /* Stage content */
     .stage-content {
       flex: 1;
       display: flex;
@@ -204,8 +199,8 @@
 
     .bouquet-display {
       position: relative;
-      width: 280px;
-      height: 380px;
+      width: 320px;
+      height: 420px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -219,12 +214,12 @@
     .bouquet-svg-container {
       width: 100%;
       height: 100%;
-      filter: drop-shadow(0 16px 28px rgba(230, 80, 120, 0.22));
+      filter: drop-shadow(0 16px 26px rgba(230, 80, 120, 0.24));
     }
 
-    /* Bottom Toolbar */
+    /* Bottom wrapper bar */
     .bottom-bar {
-      padding: 12px 20px 24px;
+      padding: 12px 20px 22px;
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -250,8 +245,8 @@
     }
 
     .choice-item {
-      width: 58px;
-      height: 58px;
+      width: 54px;
+      height: 54px;
       border-radius: 18px;
       background: #fff;
       border: 2.5px solid transparent;
@@ -270,11 +265,11 @@
       box-shadow: 0 8px 18px rgba(255, 82, 123, 0.3);
     }
 
-    /* Floating Letter Notification Button */
+    /* Floating Letter Button */
     .letter-fab {
       position: absolute;
       right: 22px;
-      bottom: 105px;
+      bottom: 100px;
       width: 56px;
       height: 56px;
       border-radius: 50%;
@@ -335,10 +330,10 @@
     .letter-card {
       width: 100%;
       max-width: 360px;
-      max-height: 82vh;
+      max-height: 84vh;
       background: #fff8fa;
       border-radius: 26px;
-      padding: 24px 22px;
+      padding: 24px 20px;
       box-shadow: 0 20px 45px rgba(0,0,0,0.25);
       position: relative;
       display: flex;
@@ -372,7 +367,7 @@
 
     .letter-header {
       font-family: 'Caveat', cursive;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
       color: #e03168;
       margin-bottom: 8px;
@@ -380,18 +375,18 @@
       line-height: 1.2;
     }
 
-    /* DYNAMIC SCROLLABLE BODY */
+    /* DYNAMIC LONG-TEXT SCROLL CONTAINER */
     .letter-scroll-body {
       overflow-y: auto;
-      padding-right: 6px;
-      margin: 10px 0 14px;
+      padding-right: 8px;
+      margin: 8px 0 12px;
       color: #4a363d;
-      font-size: 15px;
-      line-height: 1.65;
+      font-size: 14.5px;
+      line-height: 1.7;
       word-break: break-word;
       white-space: pre-line;
       flex: 1;
-      max-height: 52vh;
+      max-height: 55vh;
       font-weight: 500;
     }
 
@@ -406,11 +401,11 @@
 
     .letter-footer {
       font-family: 'Caveat', cursive;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       color: #e03168;
       text-align: right;
-      padding-top: 4px;
+      padding-top: 6px;
       border-top: 1px dashed #ffd1e0;
       margin-top: auto;
     }
@@ -421,10 +416,9 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #bfa0a9;
-      margin-top: 12px;
+      margin-top: 8px;
     }
 
-    /* Click heart burst animation */
     .floating-heart {
       position: absolute;
       pointer-events: none;
@@ -434,39 +428,32 @@
       animation: float-up-fade 1.2s ease-out forwards;
     }
 
-    /* Keyframes */
     @keyframes gentle-float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-10px) rotate(2deg); }
     }
-
     @keyframes pulse-glow {
       0%, 100% { transform: scale(1); opacity: 0.6; }
       50% { transform: scale(1.15); opacity: 0.9; }
     }
-
     @keyframes pulse-text {
       0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
     }
-
     @keyframes scroll-hint {
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(14px); opacity: 0; }
     }
-
     @keyframes pulse-fab {
-      0%, 100% { transform: scale(1); box-shadow: 0 8px 22px rgba(255, 71, 126, 0.45); }
+      0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08); box-shadow: 0 12px 28px rgba(255, 71, 126, 0.65); }
     }
-
     @keyframes pop-bouquet {
       0% { transform: scale(0.4) translateY(60px); opacity: 0; }
-      60% { transform: scale(1.08) translateY(-10px); opacity: 1; }
-      80% { transform: scale(0.96) translateY(3px); }
+      60% { transform: scale(1.06) translateY(-10px); opacity: 1; }
+      80% { transform: scale(0.97) translateY(3px); }
       100% { transform: scale(1) translateY(0); opacity: 1; }
     }
-
     @keyframes float-up-fade {
       0% { transform: translateY(0) scale(0.6); opacity: 1; }
       100% { transform: translateY(-80px) scale(1.4); opacity: 0; }
@@ -476,10 +463,8 @@
 <body>
 
   <div class="app-container" id="container">
-    <!-- Falling petals effect canvas -->
     <canvas id="petals"></canvas>
 
-    <!-- Top Bar Navigation -->
     <div class="top-bar">
       <div class="icon-btn" id="home-btn" title="Refresh">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9c7178" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -498,99 +483,165 @@
       </div>
     </div>
 
-    <!-- Center Stage: Bouquet -->
+    <!-- Center Stage: Realistic Bouquet -->
     <div class="stage-content">
       <div class="bouquet-display" id="bouquet-wrapper">
-        <!-- SVG Vector Bouquet Illustration -->
-        <svg class="bouquet-svg-container" viewBox="0 0 340 440" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Wrapper Background Outer Paper -->
-          <path id="wrapper-back" d="M90 220 L170 395 L250 220 C285 170, 245 130, 170 130 C95 130, 55 170, 90 220 Z" fill="#ffc2d4" />
+        <svg class="bouquet-svg-container" viewBox="0 0 360 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="flShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="rgba(150, 40, 70, 0.22)"/>
+            </filter>
+            <radialGradient id="sunCenter" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#3d1e03"/>
+              <stop offset="70%" stop-color="#5c330a"/>
+              <stop offset="100%" stop-color="#874e14"/>
+            </radialGradient>
+            <linearGradient id="roseRed" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff4d6d"/>
+              <stop offset="100%" stop-color="#c9184a"/>
+            </linearGradient>
+            <linearGradient id="lilyPink" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="70%" stop-color="#ffccd5"/>
+              <stop offset="100%" stop-color="#ff758f"/>
+            </linearGradient>
+          </defs>
 
-          <!-- Leaves and Foliage Behind -->
-          <g>
-            <path d="M110 170 Q70 140 85 105 Q120 120 125 155 Z" fill="#99c99b"/>
-            <path d="M230 170 Q270 140 255 105 Q220 120 215 155 Z" fill="#88bb8a"/>
-            <path d="M170 140 Q170 85 155 75 Q145 105 160 135 Z" fill="#99c99b"/>
-            <path d="M185 140 Q200 85 215 80 Q205 110 180 135 Z" fill="#88bb8a"/>
+          <!-- Back Wrapper Paper -->
+          <path id="wrapper-back" d="M85 240 L180 445 L275 240 C315 170, 260 110, 180 110 C100 110, 45 170, 85 240 Z" fill="#ffc2d4" />
+
+          <!-- Background Leaves / Foliage -->
+          <g id="foliage">
+            <path d="M120 180 Q60 140 70 80 Q105 100 125 155 Z" fill="#7ba87b"/>
+            <circle cx="75" cy="95" r="10" fill="#95c795" opacity="0.9"/>
+            <circle cx="95" cy="125" r="12" fill="#88bb88" opacity="0.9"/>
+            <path d="M240 180 Q300 140 290 80 Q255 100 235 155 Z" fill="#7ba87b"/>
+            <circle cx="285" cy="95" r="10" fill="#95c795" opacity="0.9"/>
+            <circle cx="265" cy="125" r="12" fill="#88bb88" opacity="0.9"/>
+            <path d="M180 140 Q180 50 160 40 Q145 80 168 130 Z" fill="#88bb88"/>
+            <path d="M180 140 Q180 50 200 40 Q215 80 192 130 Z" fill="#7ba87b"/>
           </g>
 
-          <!-- Flowers Cluster -->
-          <!-- Flower 1 (Pink Rose Left) -->
-          <g transform="translate(105, 145)">
-            <circle cx="0" cy="0" r="28" fill="#ff8da1"/>
-            <circle cx="-3" cy="-3" r="20" fill="#ff6b8b"/>
-            <circle cx="2" cy="2" r="12" fill="#ff4d73"/>
-            <path d="M-6 -2 C-2 -10, 8 -8, 6 2 C2 6, -4 4, -6 -2" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Baby's Breath -->
+          <g id="babys-breath" fill="#ffffff" opacity="0.95">
+            <circle cx="95" cy="85" r="3.5"/><circle cx="105" cy="75" r="3"/><circle cx="115" cy="88" r="4"/>
+            <circle cx="255" cy="85" r="3.5"/><circle cx="265" cy="75" r="3"/><circle cx="245" cy="88" r="4"/>
+            <circle cx="170" cy="55" r="3.5"/><circle cx="190" cy="55" r="3"/><circle cx="180" cy="45" r="4"/>
           </g>
 
-          <!-- Flower 2 (Red Rose Center) -->
-          <g transform="translate(170, 115)">
-            <circle cx="0" cy="0" r="34" fill="#ff4d6d"/>
-            <circle cx="-3" cy="-4" r="25" fill="#e62e5c"/>
-            <circle cx="3" cy="2" r="16" fill="#c9184a"/>
-            <path d="M-8 -3 C-3 -12, 10 -10, 8 4 C3 9, -5 7, -8 -3" stroke="#ffccd5" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Sunflower -->
+          <g transform="translate(130, 125)" filter="url(#flShadow)">
+            <g fill="#ffb703" stroke="#fb8500" stroke-width="0.8">
+              <ellipse cx="0" cy="-38" rx="7" ry="20"/>
+              <ellipse cx="27" cy="-27" rx="7" ry="20" transform="rotate(45, 27, -27)"/>
+              <ellipse cx="38" cy="0" rx="7" ry="20" transform="rotate(90, 38, 0)"/>
+              <ellipse cx="27" cy="27" rx="7" ry="20" transform="rotate(135, 27, 27)"/>
+              <ellipse cx="0" cy="38" rx="7" ry="20"/>
+              <ellipse cx="-27" cy="27" rx="7" ry="20" transform="rotate(225, -27, 27)"/>
+              <ellipse cx="-38" cy="0" rx="7" ry="20" transform="rotate(270, -38, 0)"/>
+              <ellipse cx="-27" cy="-27" rx="7" ry="20" transform="rotate(315, -27, -27)"/>
+              <ellipse cx="15" cy="-35" rx="6" ry="18" transform="rotate(22.5, 15, -35)" fill="#ffc300"/>
+              <ellipse cx="35" cy="-15" rx="6" ry="18" transform="rotate(67.5, 35, -15)" fill="#ffc300"/>
+              <ellipse cx="35" cy="15" rx="6" ry="18" transform="rotate(112.5, 35, 15)" fill="#ffc300"/>
+              <ellipse cx="15" cy="35" rx="6" ry="18" transform="rotate(157.5, 15, 35)" fill="#ffc300"/>
+              <ellipse cx="-15" cy="35" rx="6" ry="18" transform="rotate(202.5, -15, 35)" fill="#ffc300"/>
+              <ellipse cx="-35" cy="15" rx="6" ry="18" transform="rotate(247.5, -35, 15)" fill="#ffc300"/>
+              <ellipse cx="-35" cy="-15" rx="6" ry="18" transform="rotate(292.5, -35, -15)" fill="#ffc300"/>
+              <ellipse cx="-15" cy="-35" rx="6" ry="18" transform="rotate(337.5, -15, -35)" fill="#ffc300"/>
+            </g>
+            <circle cx="0" cy="0" r="22" fill="url(#sunCenter)"/>
+            <circle cx="0" cy="0" r="17" fill="none" stroke="#e09f3e" stroke-width="2.5" stroke-dasharray="3 3"/>
+            <circle cx="0" cy="0" r="10" fill="none" stroke="#d48c28" stroke-width="2" stroke-dasharray="2 2"/>
           </g>
 
-          <!-- Flower 3 (Pastel Rose Right) -->
-          <g transform="translate(235, 145)">
-            <circle cx="0" cy="0" r="28" fill="#ff99aa"/>
-            <circle cx="-2" cy="-3" r="20" fill="#ff758f"/>
-            <circle cx="2" cy="2" r="12" fill="#ff5376"/>
-            <path d="M-5 -2 C-2 -8, 7 -7, 5 2 C2 5, -3 4, -5 -2" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Pink Gerbera -->
+          <g transform="translate(230, 115)" filter="url(#flShadow)">
+            <g fill="#ff758f" stroke="#ff4d6d" stroke-width="0.6">
+              <ellipse cx="0" cy="-32" rx="4.5" ry="16"/>
+              <ellipse cx="16" cy="-28" rx="4.5" ry="16" transform="rotate(30, 16, -28)"/>
+              <ellipse cx="28" cy="-16" rx="4.5" ry="16" transform="rotate(60, 28, -16)"/>
+              <ellipse cx="32" cy="0" rx="4.5" ry="16" transform="rotate(90, 32, 0)"/>
+              <ellipse cx="28" cy="16" rx="4.5" ry="16" transform="rotate(120, 28, 16)"/>
+              <ellipse cx="16" cy="28" rx="4.5" ry="16" transform="rotate(150, 16, 28)"/>
+              <ellipse cx="0" cy="32" rx="4.5" ry="16"/>
+              <ellipse cx="-16" cy="28" rx="4.5" ry="16" transform="rotate(210, -16, 28)"/>
+              <ellipse cx="-28" cy="16" rx="4.5" ry="16" transform="rotate(240, -28, 16)"/>
+              <ellipse cx="-32" cy="0" rx="4.5" ry="16" transform="rotate(270, -32, 0)"/>
+              <ellipse cx="-28" cy="-16" rx="4.5" ry="16" transform="rotate(300, -28, -16)"/>
+              <ellipse cx="-16" cy="-28" rx="4.5" ry="16" transform="rotate(330, -16, -28)"/>
+              <circle cx="0" cy="-18" r="4.5" fill="#ffb3c1"/>
+              <circle cx="15" cy="-10" r="4.5" fill="#ffb3c1"/>
+              <circle cx="18" cy="4" r="4.5" fill="#ffb3c1"/>
+              <circle cx="9" cy="16" r="4.5" fill="#ffb3c1"/>
+              <circle cx="-9" cy="16" r="4.5" fill="#ffb3c1"/>
+              <circle cx="-18" cy="4" r="4.5" fill="#ffb3c1"/>
+              <circle cx="-15" cy="-10" r="4.5" fill="#ffb3c1"/>
+            </g>
+            <circle cx="0" cy="0" r="12" fill="#590d22"/>
+            <circle cx="0" cy="0" r="8" fill="#ffccd5" stroke="#800f2f" stroke-width="2"/>
           </g>
 
-          <!-- Flower 4 (Tulip / Daisy Top Center) -->
-          <g transform="translate(170, 75)">
-            <ellipse cx="0" cy="0" rx="14" ry="18" fill="#ffb703"/>
-            <circle cx="0" cy="0" r="8" fill="#fb8500"/>
-            <ellipse cx="-12" cy="2" rx="7" ry="14" fill="#ffea00" transform="rotate(-25)"/>
-            <ellipse cx="12" cy="2" rx="7" ry="14" fill="#ffea00" transform="rotate(25)"/>
+          <!-- Center Rose -->
+          <g transform="translate(180, 185)" filter="url(#flShadow)">
+            <path d="M-36 -12 C-45 15, -20 38, 0 38 C20 38, 45 15, 36 -12 C28 -30, -28 -30, -36 -12 Z" fill="#800f2f"/>
+            <path d="M-30 5 C-35 25, 0 35, 25 22 C35 8, 30 -15, 12 -22 C-15 -25, -28 -12, -30 5 Z" fill="#a4133c"/>
+            <path d="M-22 -8 C-28 12, -6 26, 18 16 C30 6, 22 -14, 5 -18 C-12 -22, -20 -18, -22 -8 Z" fill="#c9184a"/>
+            <path d="M-15 4 C-18 15, 8 20, 14 10 C18 2, 12 -10, 0 -12 C-12 -12, -14 -4, -15 4 Z" fill="#ff4d6d"/>
+            <path d="M-8 -2 C-8 6, 6 8, 8 2 C8 -4, -2 -6, -5 -2" stroke="#fff0f3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <circle cx="0" cy="1" r="5" fill="#ff758f"/>
           </g>
 
-          <!-- Flower 5 (Baby Breath / White Lilies accent) -->
-          <g transform="translate(135, 95)">
-            <circle cx="0" cy="0" r="10" fill="#fff"/>
-            <circle cx="0" cy="0" r="4" fill="#ffd166"/>
-          </g>
-          <g transform="translate(205, 95)">
-            <circle cx="0" cy="0" r="10" fill="#fff"/>
-            <circle cx="0" cy="0" r="4" fill="#ffd166"/>
-          </g>
-          <g transform="translate(170, 168)">
-            <circle cx="0" cy="0" r="13" fill="#ffffff"/>
-            <circle cx="0" cy="0" r="6" fill="#ffb703"/>
-          </g>
-
-          <!-- Front Wrap Layer / Origami Wrap -->
-          <path id="wrapper-front-left" d="M85 200 L170 405 L150 240 Z" fill="#ffa8c0" />
-          <path id="wrapper-front-right" d="M255 200 L170 405 L190 240 Z" fill="#ff91ad" />
-          <path id="wrapper-front-center" d="M120 220 Q170 250 220 220 L170 405 Z" fill="#ffb3c6" />
-
-          <!-- Cute Ribbon and Bow -->
-          <g id="ribbon-bow" transform="translate(170, 310)">
-            <!-- Left loop -->
-            <path d="M0 0 C-25 -25, -45 -10, -35 15 C-25 30, -5 8, 0 0" fill="#e03168" />
-            <!-- Right loop -->
-            <path d="M0 0 C25 -25, 45 -10, 35 15 C25 30, 5 8, 0 0" fill="#e03168" />
-            <!-- Ribbon Tails -->
-            <path d="M-8 6 C-18 28, -25 45, -30 55 C-24 53, -15 50, -12 40 L0 10 Z" fill="#c9184a"/>
-            <path d="M8 6 C18 28, 25 45, 30 55 C24 53, 15 50, 12 40 L0 10 Z" fill="#c9184a"/>
-            <!-- Center knot -->
-            <circle cx="0" cy="3" r="8" fill="#ff4d73"/>
-            <circle cx="-1" cy="2" r="3" fill="#fff" opacity="0.6"/>
+          <!-- Lily Flower -->
+          <g transform="translate(110, 205)" filter="url(#flShadow)">
+            <path d="M0 0 Q-28 -40 -35 -55 Q-20 -35 0 0" fill="url(#lilyPink)" stroke="#ff8da1" stroke-width="0.8"/>
+            <path d="M0 0 Q-45 -10 -60 0 Q-38 12 0 0" fill="url(#lilyPink)" stroke="#ff8da1" stroke-width="0.8"/>
+            <path d="M0 0 Q-35 35 -40 50 Q-18 28 0 0" fill="url(#lilyPink)" stroke="#ff8da1" stroke-width="0.8"/>
+            <path d="M0 0 Q10 40 22 55 Q16 28 0 0" fill="url(#lilyPink)" stroke="#ff8da1" stroke-width="0.8"/>
+            <path d="M0 0 Q35 -5 48 -15 Q25 -20 0 0" fill="url(#lilyPink)" stroke="#ff8da1" stroke-width="0.8"/>
+            <path d="M0 0 Q15 -45 25 -60 Q5 -35 0 0" fill="url(#lilyPink)" stroke="#ff8da1" stroke-width="0.8"/>
+            <line x1="0" y1="0" x2="-18" y2="-20" stroke="#d48c28" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="-18" cy="-20" r="2.5" fill="#78350f"/>
+            <line x1="0" y1="0" x2="-5" y2="-25" stroke="#d48c28" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="-5" cy="-25" r="2.5" fill="#78350f"/>
+            <line x1="0" y1="0" x2="10" y2="-18" stroke="#d48c28" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="10" cy="-18" r="2.5" fill="#78350f"/>
+            <circle cx="0" cy="0" r="5" fill="#a7c957"/>
           </g>
 
-          <!-- Cute Envelope Tag -->
-          <g transform="translate(200, 230) rotate(12)">
-            <rect x="0" y="0" width="46" height="32" rx="4" fill="#ffffff" stroke="#ffb3c6" stroke-width="1.5"/>
-            <path d="M2 3 L23 18 L44 3" stroke="#ff80a0" stroke-width="1.5" fill="none"/>
-            <circle cx="23" cy="18" r="4" fill="#ff477e"/>
+          <!-- Pastel Rose -->
+          <g transform="translate(245, 195)" filter="url(#flShadow)">
+            <path d="M-28 -8 C-35 15, -12 30, 0 30 C15 30, 35 15, 28 -8 C22 -24, -20 -24, -28 -8 Z" fill="#ff758f"/>
+            <path d="M-22 2 C-26 18, 0 24, 18 15 C26 5, 20 -12, 6 -16 C-12 -18, -18 -8, -22 2 Z" fill="#ff8fa3"/>
+            <path d="M-15 -4 C-18 10, -3 18, 10 12 C20 5, 15 -8, 2 -12 C-8 -14, -14 -10, -15 -4 Z" fill="#ffb3c1"/>
+            <path d="M-6 -1 C-6 5, 5 6, 6 1 C6 -3, -1 -5, -4 -1" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="0" cy="1" r="4" fill="#fff0f3"/>
+          </g>
+
+          <!-- Front Wrap -->
+          <path id="wrapper-front-left" d="M80 230 L180 455 L160 270 Z" fill="#ffa8c0" />
+          <path id="wrapper-front-right" d="M280 230 L180 455 L200 270 Z" fill="#ff91ad" />
+          <path id="wrapper-front-center" d="M125 250 Q180 280 235 250 L180 455 Z" fill="#ffb3c6" />
+
+          <!-- Bow & Card -->
+          <g id="ribbon-bow" transform="translate(180, 355)">
+            <path d="M0 0 C-30 -30, -50 -12, -40 18 C-30 35, -6 10, 0 0" fill="#e03168" />
+            <path d="M0 0 C30 -30, 50 -12, 40 18 C30 35, 6 10, 0 0" fill="#e03168" />
+            <path d="M-10 8 C-20 32, -28 52, -35 65 C-28 62, -18 58, -14 46 L0 12 Z" fill="#c9184a"/>
+            <path d="M10 8 C20 32, 28 52, 35 65 C28 62, 18 58, 14 46 L0 12 Z" fill="#c9184a"/>
+            <circle cx="0" cy="3" r="9" fill="#ff4d73"/>
+            <circle cx="-2" cy="1" r="3" fill="#fff" opacity="0.6"/>
+          </g>
+
+          <g transform="translate(210, 275) rotate(14)">
+            <rect x="0" y="0" width="50" height="34" rx="5" fill="#ffffff" stroke="#ffb3c6" stroke-width="1.5"/>
+            <path d="M2 3 L25 20 L48 3" stroke="#ff80a0" stroke-width="1.5" fill="none"/>
+            <circle cx="25" cy="20" r="4" fill="#ff477e"/>
           </g>
         </svg>
       </div>
     </div>
 
-    <!-- Letter Floating Action Button -->
+    <!-- Letter Button -->
     <button class="letter-fab" id="open-letter-btn" aria-label="Open Letter">
       <div class="unread-badge">1</div>
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -599,32 +650,28 @@
       </svg>
     </button>
 
-    <!-- Bottom Interactive Wrapper Selector -->
+    <!-- Bottom Wrapper Chooser -->
     <div class="bottom-bar">
       <div class="wrapper-palette-title">Choose Bouquet Wrapping Style</div>
       <div class="wrapper-choices">
-        <!-- Pink Classic -->
         <div class="choice-item active" onclick="changeTheme('pink', this)" title="Sweet Pink">
           <svg viewBox="0 0 40 40" width="100%" height="100%">
             <polygon points="10,8 30,8 24,34 16,34" fill="#ffb3c6"/>
             <circle cx="20" cy="22" r="4" fill="#e03168"/>
           </svg>
         </div>
-        <!-- Kraft Brown -->
         <div class="choice-item" onclick="changeTheme('kraft', this)" title="Vintage Kraft Brown">
           <svg viewBox="0 0 40 40" width="100%" height="100%">
             <polygon points="10,8 30,8 24,34 16,34" fill="#d4a373"/>
             <circle cx="20" cy="22" r="4" fill="#8d5b4c"/>
           </svg>
         </div>
-        <!-- Pastel Lavender -->
         <div class="choice-item" onclick="changeTheme('purple', this)" title="Dreamy Lavender">
           <svg viewBox="0 0 40 40" width="100%" height="100%">
             <polygon points="10,8 30,8 24,34 16,34" fill="#d8b4e2"/>
             <circle cx="20" cy="22" r="4" fill="#9b5de5"/>
           </svg>
         </div>
-        <!-- Soft Cream Checkered -->
         <div class="choice-item" onclick="changeTheme('cream', this)" title="Cream & Gold">
           <svg viewBox="0 0 40 40" width="100%" height="100%">
             <polygon points="10,8 30,8 24,34 16,34" fill="#faedcd"/>
@@ -634,18 +681,16 @@
       </div>
     </div>
 
-    <!-- Screen 1: Tap to Unwrap Overlay -->
+    <!-- Screen 1: Cover / Tap to Unwrap -->
     <div id="unwrap-screen">
       <div class="gift-icon-wrapper">
         <div class="gift-glow"></div>
         <svg class="gift-svg" viewBox="0 0 100 100" fill="none">
-          <!-- Mini bouquet preview -->
           <path d="M30 45 L50 85 L70 45 Z" fill="#ffb3c6" />
-          <circle cx="42" cy="40" r="12" fill="#ff5d8f" />
-          <circle cx="58" cy="40" r="12" fill="#ff758f" />
-          <circle cx="50" cy="30" r="14" fill="#ff477e" />
-          <circle cx="50" cy="22" r="5" fill="#ffea00" />
-          <!-- Mini envelope -->
+          <circle cx="40" cy="40" r="14" fill="#ffb703" />
+          <circle cx="60" cy="40" r="14" fill="#ff4d6d" />
+          <circle cx="50" cy="30" r="15" fill="#ff758f" />
+          <circle cx="50" cy="28" r="5" fill="#fff" />
           <rect x="52" y="52" width="22" height="16" rx="2" fill="#ffffff" stroke="#ffb3c6" stroke-width="1"/>
           <path d="M53 53 L63 60 L73 53" stroke="#ff477e" stroke-width="1" fill="none"/>
         </svg>
@@ -657,41 +702,46 @@
       </div>
     </div>
 
-    <!-- Screen 3: Pop-up Confession Letter Modal -->
+    <!-- Screen 3: Letter Modal -->
     <div class="letter-modal-backdrop" id="letter-modal">
       <div class="letter-card">
         <button class="close-btn" id="close-letter-btn" aria-label="Close letter">&times;</button>
         
-        <!-- Editable To / Greeting -->
-        <div class="letter-header">Dearest [Her Name / Cutie], 💕</div>
+        <div class="letter-header" id="letter-recipient"></div>
         
-        <!-- DYNAMIC SCROLLABLE BODY (Kahit gaano kahaba, auto-scroll at dynamic!) -->
-        <div class="letter-scroll-body" id="letter-text">
-Hi! I just wanted to make this special little gift for you. 🌸
+        <div class="letter-scroll-body" id="letter-text"></div>
 
-Medyo matagal ko na ring gustong sabihin sa'yo 'to, but I didn't know how to properly say it in person. Every time I see you or talk to you, you always bring a smile to my face and brighten up my ordinary days.
-
-I really admire your kindness, your energy, and everything about you. Sana nagustuhan mo 'tong simpleng digital bouquet na 'to na ginawa ko specifically for you.
-
-No pressure at all, I just wanted to be honest about my feelings and let you know how special you are to me. ✨
-        </div>
-
-        <!-- Editable From / Sign-off -->
-        <div class="letter-footer">
-          From, [Your Name] 🌷
-        </div>
+        <div class="letter-footer" id="letter-sender"></div>
         <div class="letter-sub-credit">Made with love • tap outside to close</div>
       </div>
     </div>
 
-    <!-- Audio Player (bg.mp3) -->
     <audio id="bg-audio" loop preload="auto">
-      <!-- Ilagay ang bg.mp3 sa same folder kung saan nakalagay ang index.html -->
       <source src="bg.mp3" type="audio/mpeg">
     </audio>
   </div>
 
   <script>
+  
+    const _0xrec = "VG8gbXkgZGVhcmVzdCBJeWFoLA==";
+    const _0xmsg = "SGksIEkgZG9uJ3Qga25vdyBwYWFubyBrbyBzYXNhYmloaW4gbGFoYXQgc2EneW8uIFRoZXJlJ3Mgbm8gZGF5IHdpdGhvdXQgaGF2aW5nIGEgdGhvdWdodCBvZiB5b3UuIFdoYXQgSSByZWFsbHkgbGlrZSBhYm91dCB5b3UgaXMgeXVuZyBwYWdpZ2luZyB0YWhpbWlrIG1vLCBhbHRob3VnaCBJIGtub3cgZGVlcCBpbnNpZGUsIG1haW5nYXkga2Egc2EgbWdhIHRhb25nIGNvbWZvcnRhYmxlIGthLiBZb3VyIHNtaWxlIGlzIHNvIGN1dGUuCgpOYWFsYWxhIGtvIHJpbiB5dW5nIHVtYXR0ZW5kIGthIHNhIGNpdHkgaGFsbCBrYXNpIG1heSBwYS13b3JzaGlwIHNvbmcgc2lsYSBkb29uLCBhbmQgdW1hdHRlbmQgZGluIGFrbyBub29uIG5hbmcgbWFnLWlzYSBuZ2EgbGFuZy4gTmFraXRhIGtvIGtheW8gbmEgdW1hdHRlbmQuIElzYSAneW9uIHNhIG1nYSB1bmFuZyB1c2FwIG5hdGluLiBOYWxhbWFuIGtvIG5nIGFyYXcgbmEgJ3lvbiBuYSBpa2F3IHRhbGFnYSBhbmcgbmFnLWF5YSBzYSBrYWliaWdhbiBtbyBuYSB1bWF0dGVuZCBkaW4gc2Egd29yc2hpcCBjb25jZXJ0IGthc2kgeW91IHdhbnRlZCB0byBnbywga2FzbyB3YWxhIGthbmcga2FzYW1hLgoKTWF0YWdhbCBrbyBuYSBndXN0b25nIHNhYmloaW4gJ3RvIHNhJ3lvIHNpbmNlIGRlZmVuc2UgbmF0aW4gc2EgRmlsaXBpbm9sb2hpeWEuIEkgd2FudCB0byBjb25mZXNzLCBub3QgaW4gYSB3cm9uZyB3YXkgb3Igd2l0aCBiYWQgaW50ZW50aW9uLiBJIHdhbnQgdG8ga25vdyB5b3UgbW9yZS4gVGhlcmUncyBubyBoYXJkIGZlZWxpbmdzIGlmIHlvdSBjYW4ndCByZWNpcHJvY2F0ZSBteSBmZWVsaW5ncywgaWYgZXZlciBtYW4gbmEgbmFiYWJhc2EgbW8gJ3RvIHNhIG1vbWVudCBuYSAndG8uIEl0IG1lYW5zIGxhbmcgbmEgSSBnb3QgdGhlIGNvdXJhZ2UgbmEsIHNvIGp1c3QgdGVsbCBtZSBob3cgeW91IGZlZWwuIFRlbGwgbWUgd2hhdCB5b3Ugd2FudC4gTm8gcHJlc3N1cmUsIGFuZCBzeWVtcHJlLCBkaSBrYSBkYXBhdCBtYS1ndWlsdCBvciBtYWtvbnNlbnN5YS4gQXMgSSBzYWlkLCBqdXN0IGJlIHlvdS4gVGVsbCBtZSBob3cgeW91IGZlZWwgdG93YXJkcyBtZS4KCkkgd2lsbCBsb3ZlIHRvIGtub3cgeW91IGJldHRlciwganVzdCBsaWtlIGhvdyBJIGxlYXJuZWQgdG8gc29sdmUgYSBSdWJpaydzIEN1YmXigJRiZWNhdXNlIEknbSB3aWxsaW5nIHRvIGxlYXJuIHlvdSBwaWVjZSBieSBwaWVjZS4KCkFsYW0gbW8gYmEgbmEgaGlyYXAgYWtvIHVtYW1pbj8gSWYgZXZlciBtYW4gbmEgcGluYWJhc2Ega28gJ3RvIHNhJ3lvLCBpa2F3IGFuZyBrYXVuYS11bmFoYW5nIHRhbyBuYSBuYXNhYmloYW4ga28gbmcgdHVuYXkga29uZyBuYXJhcmFtZGFtYW4uIERhaGlsIEkgYWx3YXlzIHRoaW5rLCBJIGNhbid0IGFmZm9yZCB0byBsb3ZlIHBhIGRhaGlsIEknbSBmaW5hbmNpYWxseSB1bnN0YWJsZSBwYSwgYSBzdHVkZW50LCBhbmQgZG9lc24ndCBoYXZlIGEgd29yayBwYS4gTGlrZSwgaG93IGRhcmUgSSBjcmF2ZSBmb3IgbG92ZSB3aGVuIEkgaGF2ZSBub3RoaW5nIHRvIG9mZmVyIHBhPyBQZXJvIEkgdGhvdWdodCBJIGhhdmUgc28gbWFueSB0aGluZ3MgdG8gb2ZmZXIgcGEgbmFtYW46IHRpbWUsIGVmZm9ydCB0byBrbm93IHlvdSBiZXR0ZXIsIHJlc3BlY3QsIGNvbnNpc3RlbmN5LCBiZWluZyBmbHVlbnQgaW4gbGlzdGVuaW5nLCBhbHNvIGJlaW5nIHRoZXJlLiBUaG9zZSB0aGluZ3MgbWF0dGVyIHRvby4KCkkgbWF5IGJlIHBvb3IgYXQgdGhpcyBtb21lbnQsIGJ1dCBJIGhhdmUgYW1iaXRpb24sIGRyZWFtcywgYW5kIGdvYWxzLiBLYXlhIHdhZyBrYSBtYWctYWxhbGEgbmEgYmFrYSBtYXNha3RhbiBtbyAna28uIEJhc3RhIG1hZ2luZyB0b3RvbyBrYSBsYW5nLiBBbmQgaWYgZXZlciBtYW4gbmEgbWF5IG1hZ3VzdHVoYW4ga2FuZyBpYmEsIHBsZWFzZSBkbyBub3QgZGF0ZSBhIG1hbiBzbyBwb29yIHRoYXQgdGhlIG9ubHkgdGhpbmcgaGUgY2FuIG9mZmVyIGlzIGhpcyBtb25leS4KClRoaXJkIHllYXIgbmEgdGF5bywgYW5kIEkgZ290IG15IGV5ZXMgb24geW91IHNpbmNlIGZpcnN0IHllYXIgYXQgbWFnYmFiYWthc3lvbiBuYSBub29uLiBBbmQgd2Ugb25seSBsaXZlIG9uY2UsIHNvIGhlcmUncyBteSBjaGFuY2UgbmEuIElzYW5nIGJlc2VzIGxhbmcgbmFtYW4gdGF5byBtYWJ1YnVoYXksIGRpYmE/CgpObyBtYXR0ZXIgd2hhdCBoYXBwZW5zLCBJJ20gc28gZ3JhdGVmdWwgbmEgbmFnaW5nIGtha2xhc2Uga2l0YS4gTWFoaXlhaW4gYWtvLCBvbywgcGVybyBJIGRvbid0IGtub3cgaG93IHRvIHByb3Blcmx5IHNheSBpdCB0byB5b3UgaW4gcGVyc29uLiBFdmVyeSB0aW1lIEkgc2VlIHlvdSBvciB0YWxrIHRvIHlvdSwgeW91IGFsd2F5cyBicmluZyBhIHNtaWxlIHRvIG15IGZhY2UuIEthaGl0IG51bmcgbmFnLUNFQVAgdGF5bywgbmF1dW5hIGFrbyBtYWdsYWthZCBrYXNpIGRpIGtvIG1hcGlnaWxhbiBuZ2l0aSBrbyBrYXNpIGthc2FtYSBraXRhLiBOYXVuYSB0YWxhZ2EgYWtvIGJha2EgbWFraXRhIG1vLiBOYWtha2FoaXlhIG5hbWFuIPCfmKkuCgpJIHJlYWxseSBhZG1pcmUgeW91ciBraW5kbmVzcywgeW91ciBlbmVyZ3ksIGFuZCBldmVyeXRoaW5nIGFib3V0IHlvdS4gSSBob3BlIHlvdSBsaWtlZCB0aGlzIGxldHRlciBhbmQgdGhlIGZsb3dlcnMuCgpMYXN0bHksIG5vIHByZXNzdXJlIGF0IGFsbC4gSSBqdXN0IHdhbnRlZCB0byBiZSBob25lc3QgYWJvdXQgbXkgZmVlbGluZ3MgYW5kIGxldCB5b3Uga25vdyBob3cgdHJ1bHkgc3BlY2lhbCB5b3UgYXJlIHRvIG1lIOKcqC4=";
+    const _0xsnd = "RnJvbSwgc29tZW9uZSB3aG8gYWRtaXJlcyB5b3Ug8J+Mtw==";
+
+    // Safe UTF-8 Base64 Decoder
+    function decodeSafe(str) {
+      try {
+        const bytes = Uint8Array.from(atob(str), c => c.charCodeAt(0));
+        return new TextDecoder('utf-8').decode(bytes);
+      } catch (e) {
+        return atob(str);
+      }
+    }
+
+    // Auto-decode and inject on browser runtime
+    document.getElementById('letter-recipient').innerText = decodeSafe(_0xrec);
+    document.getElementById('letter-text').innerText = decodeSafe(_0xmsg);
+    document.getElementById('letter-sender').innerText = decodeSafe(_0xsnd);
+
     // State management
     let unwrapped = false;
     let audioPlaying = false;
@@ -705,30 +755,20 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
     const musicBtn = document.getElementById('music-btn');
     const bgAudio = document.getElementById('bg-audio');
 
-    // UNWRAP ACTION
     unwrapScreen.addEventListener('click', () => {
       if (unwrapped) return;
       unwrapped = true;
 
-      // Start music
       playMusic();
-
-      // Spawn celebration hearts/confetti
       burstConfetti();
-
-      // Hide unwrap screen
       unwrapScreen.classList.add('hidden');
-
-      // Animate bouquet bloom
       bouquetWrapper.classList.add('bloom');
 
-      // Automatically open confession letter after short sweet delay (1.2s)
       setTimeout(() => {
         openModal();
       }, 1200);
     });
 
-    // OPEN & CLOSE LETTER MODAL
     function openModal() {
       letterModal.classList.add('open');
       burstPetalsFromLetter();
@@ -748,14 +788,10 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
       closeModal();
     });
 
-    // Close when tapping modal backdrop
     letterModal.addEventListener('click', (e) => {
-      if (e.target === letterModal) {
-        closeModal();
-      }
+      if (e.target === letterModal) closeModal();
     });
 
-    // RESET TO COVER
     homeBtn.addEventListener('click', () => {
       unwrapScreen.classList.remove('hidden');
       bouquetWrapper.classList.remove('bloom');
@@ -763,7 +799,6 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
       closeModal();
     });
 
-    // MUSIC TOGGLE
     function playMusic() {
       bgAudio.play().then(() => {
         audioPlaying = true;
@@ -804,40 +839,11 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
       }
     }
 
-    // THEME / WRAPPER SWITCHER
     const themes = {
-      pink: {
-        back: '#ffc2d4',
-        left: '#ffa8c0',
-        right: '#ff91ad',
-        center: '#ffb3c6',
-        ribbon: '#e03168',
-        knot: '#ff4d73'
-      },
-      kraft: {
-        back: '#d4a373',
-        left: '#c68b59',
-        right: '#b07d4b',
-        center: '#dfb288',
-        ribbon: '#8d5b4c',
-        knot: '#6f4538'
-      },
-      purple: {
-        back: '#e2cfea',
-        left: '#d3b7e0',
-        right: '#be9bd4',
-        center: '#dfc2ed',
-        ribbon: '#9b5de5',
-        knot: '#7b2cbf'
-      },
-      cream: {
-        back: '#faedcd',
-        left: '#f0dfb6',
-        right: '#e6cca0',
-        center: '#fdf0d5',
-        ribbon: '#e07a5f',
-        knot: '#d06043'
-      }
+      pink: { back: '#ffc2d4', left: '#ffa8c0', right: '#ff91ad', center: '#ffb3c6', ribbon: '#e03168', knot: '#ff4d73' },
+      kraft: { back: '#d4a373', left: '#c68b59', right: '#b07d4b', center: '#dfb288', ribbon: '#8d5b4c', knot: '#6f4538' },
+      purple: { back: '#e2cfea', left: '#d3b7e0', right: '#be9bd4', center: '#dfc2ed', ribbon: '#9b5de5', knot: '#7b2cbf' },
+      cream: { back: '#faedcd', left: '#f0dfb6', right: '#e6cca0', center: '#fdf0d5', ribbon: '#e07a5f', knot: '#d06043' }
     };
 
     function changeTheme(themeName, element) {
@@ -857,9 +863,7 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
       createFloatingHeart(event.clientX || window.innerWidth/2, event.clientY || window.innerHeight/2);
     }
 
-    // TAP TO EMIT FLOATING HEARTS
     document.addEventListener('pointerdown', (e) => {
-      // Don't trigger on buttons
       if (e.target.closest('.icon-btn, .choice-item, .letter-card, .letter-fab')) return;
       createFloatingHeart(e.clientX, e.clientY);
     });
@@ -867,7 +871,7 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
     function createFloatingHeart(x, y) {
       const heart = document.createElement('div');
       heart.className = 'floating-heart';
-      const emojis = ['💖', '🌸', '✨', '🌷', '💕', '🎀'];
+      const emojis = ['💖', '🌸', '✨', '🌷', '🌻', '💕'];
       heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       heart.style.left = `${x - 12}px`;
       heart.style.top = `${y - 12}px`;
@@ -896,10 +900,8 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
       }
     }
 
-    // FALLING SAKURA / PETALS EFFECT (CANVAS)
     const canvas = document.getElementById('petals');
     const ctx = canvas.getContext('2d');
-
     let width = canvas.width = canvas.parentElement.clientWidth;
     let height = canvas.height = canvas.parentElement.clientHeight;
 
@@ -920,14 +922,12 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
 
     function drawPetals() {
       ctx.clearRect(0, 0, width, height);
-
       petals.forEach(p => {
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate((p.angle * Math.PI) / 180);
         ctx.fillStyle = p.color;
         ctx.beginPath();
-        // petal oval shape
         ctx.ellipse(0, 0, p.r, p.r * 1.6, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
@@ -941,7 +941,6 @@ No pressure at all, I just wanted to be honest about my feelings and let you kno
           p.x = Math.random() * width;
         }
       });
-
       requestAnimationFrame(drawPetals);
     }
     drawPetals();
